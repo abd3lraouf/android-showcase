@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 class KotlinViewModelProvider private constructor() {
+
     companion object {
         inline fun <reified T : ViewModel> of(fragment: Fragment, crossinline factory: () -> T): T {
             @Suppress("UNCHECKED_CAST")

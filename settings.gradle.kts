@@ -44,6 +44,9 @@ pluginManagement {
         val ktlintGradleVersion: String by settings
         id("org.jlleitschuh.gradle.ktlint") version ktlintGradleVersion
 
+        val spotlessGradleVersion: String by settings
+        id("com.diffplug.spotless") version spotlessGradleVersion
+
         val androidJUnit5Version: String by settings
         id("de.mannodermaus.android-junit5") version androidJUnit5Version
     }
@@ -72,7 +75,7 @@ pluginManagement {
 
 // See Dependency management section in README.md
 // https://github.com/igorwojda/android-showcase#dependency-management
-@Suppress("detekt.StringLiteralDuplication")
+@Suppress("detekt.StringLiteralDuplication", "UnstableApiUsage")
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {

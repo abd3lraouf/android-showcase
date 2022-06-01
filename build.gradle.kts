@@ -1,9 +1,11 @@
 import com.android.build.gradle.BaseExtension
+import com.diffplug.spotless.extra.wtp.EclipseWtpFormatterStep.XML
 import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
     id(GradlePluginId.DETEKT)
     id(GradlePluginId.KTLINT_GRADLE)
+    id(GradlePluginId.SPOTLESS)
     id(GradlePluginId.ANDROID_JUNIT_5) apply false
     id(GradlePluginId.KOTLIN_ANDROID) apply false
     id(GradlePluginId.ANDROID_APPLICATION) apply false
@@ -21,6 +23,14 @@ allprojects {
 
     // We want to apply ktlint at all project level because it also checks Gradle config files (*.kts)
     apply(plugin = GradlePluginId.KTLINT_GRADLE)
+    apply(plugin = GradlePluginId.SPOTLESS)
+
+    spotless {
+        format("xml") {
+            target("src/**/res/**/*.xml") // must specify target
+            eclipseWtp(XML) // must specify a type (table below)
+        }
+    }
 
     // Ktlint configuration for sub-projects
     ktlint {
